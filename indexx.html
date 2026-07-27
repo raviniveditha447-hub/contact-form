@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshsales Web Form Test</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Freshsales Classic Web Form</h1>
+
+<p>
+This page is used to test Freshsales Web Forms along with UTM and GCLID tracking.
+</p>
+
+<!-- Freshsales Classic Web Form -->
+
+<script
+src="https://annapurnisrinivasan.myfreshworks.com/crm/sales/web_forms/c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98/form.js"
+crossorigin="anonymous"
+id="fs_c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98">
+</script>
+
+<script>
+
+function getCookie(cookieName){
+
+    let name = cookieName + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let cookies = decodedCookie.split(';');
+
+    for(let i=0;i<cookies.length;i++){
+
+        let cookie = cookies[i];
+
+        while(cookie.charAt(0) == ' '){
+            cookie = cookie.substring(1);
+        }
+
+        if(cookie.indexOf(name) == 0){
+            return cookie.substring(name.length,cookie.length);
+        }
+
+    }
+
+    return "";
+
+}
+
+var WebFormEvent = {
+
+    beforeSubmit : function(){
+
+        console.log("=================================");
+        console.log("Freshsales beforeSubmit Triggered");
+        console.log("=================================");
+
+        const utmMapping = {
+
+            "_fm_oc":"contact[first_campaign]",
+            "_fm_om":"contact[first_medium]",
+            "_fm_os":"contact[first_source]",
+
+            "_fm_rc":"contact[latest_campaign]",
+            "_fm_rm":"contact[latest_medium]",
+            "_fm_rs":"contact[latest_source]"
+
+        };
+
+        Object.entries(utmMapping).forEach(function(item){
+
+            const storageKey = item[0];
+            const formField = item[1];
+
+            const value = localStorage.getItem(storageKey);
+
+            console.log(storageKey + " : " + value);
+
+            if(value){
+
+                WebForm.$("<input>")
+                    .attr({
+                        type:"hidden",
+                        name:formField,
+                        value:value
+                    })
+                    .appendTo(".fs-webform-container form");
+
+            }
+
+        });
+
+        /* -----------------------------
+           Capture GCLID
+        ------------------------------ */
+
+        const gclid = getCookie("gclid");
+
+        console.log("GCLID : ",gclid);
+
+        if(gclid){
+
+            WebForm.$("<input>")
+                .attr({
+                    type:"hidden",
+                    name:"contact[custom_field][cf_gcl_hidden]",
+                    value:gclid
+                })
+                .appendTo(".fs-webform-container form");
+
+        }
+
+        console.log("Hidden fields appended successfully.");
+
+    }
+
+};
+
+</script>
+
+</div>
+
+</body>
+</html>
