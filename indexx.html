@@ -86,6 +86,21 @@ function getCookie(cookieName){
 
 }
 
+const gclid = localStorage.getItem("gclid");
+
+console.log("Submitting GCLID:", gclid);
+
+if (gclid) {
+    WebForm.$("<input>")
+        .attr({
+            type: "hidden",
+            name: "contact[custom_field][cf_gcl_hidden]",
+            value: gclid
+        })
+        .appendTo(".fs-webform-container form");
+}
+
+    
 var WebFormEvent = {
 
     beforeSubmit : function(){
