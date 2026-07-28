@@ -145,5 +145,40 @@ document.getElementById("contactForm").addEventListener("submit", function(e){
 
 </script>
 
+    <script>
+  var WebFormEvent = {
+    beforeSubmit: function () {
+      // Define mapping of localStorage keys to form field names
+      const utmMapping = {
+        "_fm_oc": "contact[first_campaign]",
+        "_fm_om": "contact[first_medium]",
+        "_fm_os": "contact[first_source]",
+        "_fm_rc": "contact[latest_campaign]",
+        "_fm_rm": "contact[latest_medium]",
+        "_fm_rs": "contact[latest_source]"
+        "_gcl_ls": "contact[custom_field][cf_gcl_hidden]",
+      };
+
+      // Function to get UTM values from localStorage
+      function getLocalStorageValue(key) {
+        return window.localStorage.getItem(key) || "";
+      }
+
+      // Append hidden fields dynamically
+      for (const [storageKey, formFieldName] of Object.entries(utmMapping)) {
+        const value = getLocalStorageValue(storageKey);
+        if (value) {
+          WebForm.$('<input>').attr({
+            type: 'hidden',
+            name: formFieldName,
+            value: value
+          }).appendTo('.fs-webform-container form');
+        }
+      }
+    }
+  };
+
+    </script>
+
 </body>
 </html>
