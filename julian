@@ -1,136 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N8KDM22P');</script>
-<!-- End Google Tag Manager -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-
-    <!-- Freshworks CRM Tracking Code -->
-    <script src="//in.fw-cdn.com/31428335/695758.js" chat="true"></script>
+    <title>Freshsales Contact Form</title>
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 40px;
         }
 
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-            background:#f5f7fb;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
         }
 
-        .container{
-            background:#fff;
-            width:420px;
-            padding:35px;
-            border-radius:10px;
-            box-shadow:0 8px 25px rgba(0,0,0,.12);
+        h1 {
+            text-align: center;
         }
 
-        h1{
-            text-align:center;
-            color:#1565c0;
-            margin-bottom:10px;
-        }
-
-        p{
-            text-align:center;
-            color:#666;
-            margin-bottom:25px;
-        }
-
-        label{
-            display:block;
-            margin-top:15px;
-            font-weight:bold;
-            color:#444;
-        }
-
-        input{
-            width:100%;
-            padding:12px;
-            margin-top:6px;
-            border:1px solid #ccc;
-            border-radius:6px;
-            font-size:15px;
-        }
-
-        button{
-            width:100%;
-            margin-top:25px;
-            padding:14px;
-            border:none;
-            border-radius:6px;
-            background:#1565c0;
-            color:#fff;
-            font-size:16px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#0d47a1;
-        }
-
-        #success{
-            display:none;
-            margin-top:20px;
-            padding:15px;
-            background:#d4edda;
-            color:#155724;
-            border-radius:6px;
-            text-align:center;
+        p {
+            text-align: center;
+            color: #666;
         }
     </style>
 </head>
 
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8KDM22P"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<div class="container">
 
-<script src='https://annapurnisrinivasan.myfreshworks.com/crm/sales/web_forms/c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98/form.js' crossorigin='anonymous' id='fs_c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98'></script>
+    <h1>Contact Us</h1>
 
-<script>
+    <p>Please fill out the form below.</p>
 
-document.getElementById("contactForm").addEventListener("submit", function(e){
+    <!-- Freshsales Classic Web Form -->
+    <script
+        src="https://annapurnisrinivasan.myfreshworks.com/crm/sales/web_forms/c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98/form.js"
+        crossorigin="anonymous"
+        id="fs_c21a8da395c5734617002eac9c2200b0be94bd63478a064ac6a937654a543c98">
+    </script>
 
-    e.preventDefault();
-
-    document.getElementById("contactForm").style.display="none";
-
-    document.getElementById("success").style.display="block";
-
-});
-
-</script>
-
-<script>
-(function () {
-    const params = new URLSearchParams(window.location.search);
-    const gclid = params.get("gclid");
-
-    if (gclid) {
-        localStorage.setItem("gclid", gclid);
-        console.log("GCLID stored:", gclid);
-    }
-})();
-</script>
+</div>
 
 </body>
 </html>
